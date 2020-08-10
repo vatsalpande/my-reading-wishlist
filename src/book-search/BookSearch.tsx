@@ -4,25 +4,44 @@ import {getBooksByType} from "./book-search.service";
 
 const BookSearch = () => {
   const [bookType, updateBookType] = useState("");
+  const [allAvailableBooks, setAllAvailableBooks] = useState([]);
   async function requestBooks() {
-    const { animals } = await getBooksByType(bookType);
-    console.log("animals", animals);
+      if (bookType) {
+          const  allBooks = await getBooksByType(bookType);
+          setAllAvailableBooks(allBooks);
+      }
   }
 
   useEffect(() => {
-    console.info('Page Loaded');
-  }, []);
+      async function getAllBooks() {
+          await requestBooks();
+      }
+      getAllBooks();
+  }, [bookType]);
 
-  return (
+
+
+  return  (
     <div className="search-params">
       <form
         onSubmit={e => {
           e.preventDefault();
           requestBooks();
-        }}
-      >
-        <button>Submit</button>
+        }}>
+          { !bookType &&
+              <div className="empty">
+                  <p>Try searching for a topic, for example
+                      <a onClick={() => {
+                          console.info('-- Click Called ---');
+                          updateBookType("Javascript")
+                      }}>Javascript</a>
+                  </p>
+              </div>
+          }
       </form>
+      <div>
+          <pre>{ JSON.stringify(allAvailableBooks, null, 4)}</pre>
+      </div>
     </div>
   );
 };
