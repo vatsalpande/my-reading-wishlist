@@ -1,0 +1,60 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+h1,
+h2 {
+  font-size: 24px;
+  margin: $spacing-xxs 0;
+  font-weight: 300;
+}
+
+input {
+  font-size: 0.8rem;
+  border: 1px solid $gray40;
+  padding: $spacing-xxs;
+}
+
+a {
+  cursor: pointer;
+  color: $pink-accent;
+
+  &:hover {
+    color: $pink-dark;
+  }
+}
+
+header > a,
+#root > div > h1 {
+  display: inline-block;
+  width: 100vw;
+  height: 15vh;
+  overflow: hidden;
+  text-indent: -9999px;
+  border: 1px solid red;
+}
+
+header a {
+  color: #bf3334;
+  font-size: 3px;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  padding-bottom: 10px;
+}
+
+header {
+  border: 1px solid green;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px 0px 0px 0px;
+}
